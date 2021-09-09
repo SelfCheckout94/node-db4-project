@@ -1,12 +1,22 @@
 exports.up = async function (knex) {
   await knex.schema
     .createTable("recipes", (tbl) => {
-      tbl.increments("recipe_id").notNullable().unique();
-      tbl.string("recipe_name");
+      tbl.increments("recipe_id");
+      tbl.string("recipe_name").notNullable().unique();
       tbl.timestamps(true, true);
     })
     .createTable("steps", (tbl) => {
       tbl.increments("step_id");
+      tbl.integer("step_number").notNullable();
+      tbl.string("step_instructions").notNullable();
+      tbl
+        .integer("recipe_id")
+        .unsigned()
+        .notNullable()
+        .references("recipe_id")
+        .inTable("recipes")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
     })
     .createTable("ingredients", (tbl) => {
       tbl.increments("ingredient_id");
