@@ -6,7 +6,8 @@
     "make": "knex migrate:make",
     "up": "knex migrate:up",
     "down": "knex migrate:down",
-    "seed": "knex seed:run"
+    "seed": "knex seed:run",
+    "seed-cycle": "knex migrate:down && knex migrate:up && knex seed:run"
   },
   "repository": {
     "type": "git",
