@@ -20,9 +20,27 @@ exports.up = async function (knex) {
     })
     .createTable("ingredients", (tbl) => {
       tbl.increments("ingredient_id");
+      tbl.string("ingredient_name");
     })
     .createTable("step_ingredients", (tbl) => {
       tbl.increments("step_ingredient_id");
+      tbl.integer("quantity").notNullable();
+      tbl
+        .integer("step_id")
+        .unsigned()
+        .notNullable()
+        .references("step_id")
+        .inTable("steps")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
+      tbl
+        .integer("ingredient_id")
+        .unsigned()
+        .notNullable()
+        .references("ingredient_id")
+        .inTable("ingredients")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
     });
 };
 

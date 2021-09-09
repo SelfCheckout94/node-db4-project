@@ -50,5 +50,11 @@ exports.seed = function (knex, Promies) {
         "Pour in milk to balance out the bitterness of the coffee or enjoy black",
       recipe_id: 3,
     },
+    {
+      step_number: 4,
+      step_instructions:
+        "You do SOMETHING ELSE with the cheese, noodles, meat, or cheese",
+      recipe_id: 1,
+    },
   ]);
 };
